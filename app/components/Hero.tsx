@@ -1,51 +1,61 @@
 "use client";
 
+import React from 'react';
+
 export default function Hero() {
   const ORDER_LINK = "https://wa.me/923335539381";
-  const HERO_IMAGE = "https://images.unsplash.com/photo-1595272568891-123402d0fb3b?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  
+  // Using your requested working image URL
+  const CAKE_HOLDER_IMAGE = "/hero.png";
 
   return (
-    <section className="relative w-full h-screen flex items-center justify-center bg-stone-100 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img 
-          src={HERO_IMAGE} 
-          alt="Artisanal Cake Design" 
-          className="w-full h-full object-cover scale-105 animate-slow-zoom"
-        />
-        <div className="absolute inset-0 bg-stone-900/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-stone-900/40 via-transparent to-stone-900/60"></div>
-      </div>
+    <section className="relative w-full min-h-screen bg-[#76C893] flex flex-col md:flex-row items-center overflow-hidden">
+      
+      {/* Left Side: Image of person holding the cake */}
+     <div className="w-full md:w-1/2 h-[50vh] md:h-screen relative overflow-hidden">
+  <img 
+    src={CAKE_HOLDER_IMAGE} 
+    alt="Cakes By Kalsoom Bespoke Design" 
+    /* Changed to object-left to shift the visual content toward the right */
+    className="w-full h-full object-cover object-[15%_center]" 
+  />
+  
+  <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')] pointer-events-none"></div>
+</div>
 
-      <div className="relative z-20 flex flex-col items-center text-center px-6">
-        <h1 className="text-[12vw] md:text-[8rem] font-serif text-white leading-none tracking-tighter mb-4 animate-fade-in drop-shadow-lg">
-          Cakes By <span className="italic block md:inline">Kalsoom</span>
-        </h1>
+      {/* Right Side: Content */}
+      <div className="w-full md:w-1/2 flex flex-col justify-center px-8 md:px-20 py-16 md:py-0 text-white">
         
-        <div className="h-px w-12 md:w-24 bg-white mb-8 opacity-80"></div>
-
-        <div className="flex flex-col items-center gap-3 mb-12">
-          <p className="text-xs md:text-lg tracking-[0.4em] uppercase text-white font-light">
-            Bespoke Patisserie <span className="mx-2">&</span> Custom Bakes
+        <div className="max-w-xl">
+          <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] mb-6">
+            You are special, <br />
+            <span className="text-white">so should be your cake!</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl font-medium opacity-90 mb-10 leading-relaxed max-w-md">
+            Delivering yummy, handcrafted cakes to your doorstep in Rawalpindi & Islamabad.
           </p>
-          <span className="text-[10px] tracking-[0.6em] uppercase text-stone-200">Rawalpindi</span>
-        </div>
 
-        <a 
-          href={ORDER_LINK}
-          target="_blank"
-          className="group relative px-10 py-4 md:px-16 md:py-6 bg-white text-stone-900 text-[10px] md:text-xs tracking-[0.5em] uppercase font-bold overflow-hidden transition-all duration-700 hover:text-white"
-        >
-          <span className="relative z-10">Order Your Cake</span>
-          <div className="absolute inset-0 bg-amber-800 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out"></div>
-        </a>
+          <div className="flex items-center gap-6">
+            <a 
+              href={ORDER_LINK}
+              target="_blank"
+              className="px-10 py-4 bg-[#F3722C] hover:bg-[#D95D1D] text-white rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl active:scale-95"
+            >
+              Order Now
+            </a>
+            
+            <button className="text-white font-semibold border-b-2 border-white/30 hover:border-white transition-all pb-1">
+              View Gallery
+            </button>
+          </div>
+        </div>
       </div>
 
-      <style jsx>{`
-        @keyframes slow-zoom { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
-        .animate-slow-zoom { animation: slow-zoom 25s infinite alternate ease-in-out; }
-        .animate-fade-in { animation: fadeIn 2s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-      `}</style>
+    
+
+    
+
     </section>
   );
 }

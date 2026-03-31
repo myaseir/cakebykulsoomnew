@@ -7,7 +7,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Transition background on scroll to maintain readability over cake imagery
+  // Handle scroll for background visibility
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
@@ -20,110 +20,94 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed w-full z-[100] transition-all duration-700 ${
+      className={`fixed w-full z-[100] transition-all duration-500 ${
         scrolled || isOpen
-          ? "bg-[#FCFAFB]/95 backdrop-blur-md py-4 border-b border-stone-100 shadow-sm" 
-          : "bg-transparent py-8"
+          ? "bg-white py-4 shadow-md" 
+          : "bg-transparent py-6"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex justify-between items-center h-10">
-          
-          {/* 1. Desktop Left Navigation - Boutique Focus */}
-          <div className="hidden md:flex gap-10 items-center flex-1">
-            <Link href="/menu" className="text-[10px] tracking-[0.3em] uppercase font-bold text-stone-900 hover:text-amber-800 transition-colors">
-              The Menu
-            </Link>
-            <Link href="/weddings" className="text-[10px] tracking-[0.3em] uppercase font-bold text-stone-900 hover:text-amber-800 transition-colors">
-              Weddings
-            </Link>
-          </div>
+      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center h-10">
+        
+        {/* 1. Brand Logo - Left Aligned */}
+        <div className="flex-shrink-0 z-[110]">
+          <Link 
+            href="/" 
+            onClick={closeMenu}
+            className="text-2xl font-bold tracking-tighter text-stone-800 transition-opacity hover:opacity-80"
+          >
+            Kalsoom<span className="text-[#F3722C]">.</span>
+          </Link>
+        </div>
 
-          {/* 2. Central Logo - Updated Branding */}
-          <div className="flex-shrink-0 z-50">
-            <Link 
-              href="/" 
-              onClick={closeMenu}
-              className="text-2xl md:text-3xl font-serif tracking-tight text-stone-900 transition-opacity hover:opacity-80 flex flex-col items-center leading-none"
-            >
-              <span className="text-[10px] tracking-[0.5em] uppercase font-sans mb-1 text-stone-400">Cakes By</span>
-              <span className="italic">Kalsoom</span>
-            </Link>
-          </div>
+        {/* 2. Desktop Navigation - Right Aligned */}
+        <div className="hidden md:flex gap-10 items-center">
+          <Link href="/menu" className="text-sm font-semibold text-stone-800 hover:text-[#F3722C] transition-colors">
+            Our Cakes
+          </Link>
+          <Link href="/weddings" className="text-sm font-semibold text-stone-800 hover:text-[#F3722C] transition-colors">
+            Weddings
+          </Link>
+          <Link href="/about" className="text-sm font-semibold text-stone-800 hover:text-[#F3722C] transition-colors">
+            Our Story
+          </Link>
+          <Link 
+            href="https://wa.me/923335539381"
+            target="_blank"
+            className="px-8 py-2.5 bg-[#F3722C] text-white text-xs font-bold rounded-full hover:bg-[#D95D1D] transition-all shadow-lg active:scale-95"
+          >
+            Order Now
+          </Link>
+        </div>
 
-          {/* 3. Desktop Right Navigation - Action Focused */}
-          <div className="hidden md:flex gap-10 items-center justify-end flex-1">
-            <Link href="/about" className="text-[10px] tracking-[0.3em] uppercase font-bold text-stone-900 hover:text-amber-800 transition-colors">
-              Our Story
-            </Link>
-            <Link 
-              href="https://wa.me/923335539381"
-              target="_blank"
-              className="px-6 py-2.5 bg-stone-900 text-white text-[10px] tracking-[0.3em] uppercase font-bold hover:bg-amber-800 transition-all duration-500 shadow-lg"
-            >
-              Order Now
-            </Link>
-          </div>
-
-          {/* 4. Mobile Toggle Button - Stone/Amber Palette */}
-          <div className="md:hidden flex items-center">
-            <button 
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-stone-900 focus:outline-none p-2 relative z-[110]"
-              aria-label="Toggle Menu"
-            >
-              <div className="w-6 flex flex-col items-end gap-1.5">
-                <span className={`h-[1.5px] bg-stone-900 transition-all duration-300 ${isOpen ? "w-6 rotate-45 translate-y-2" : "w-6"}`}></span>
-                <span className={`h-[1.5px] bg-stone-900 transition-all duration-300 ${isOpen ? "opacity-0" : "w-4"}`}></span>
-                <span className={`h-[1.5px] bg-stone-900 transition-all duration-300 ${isOpen ? "w-6 -rotate-45 -translate-y-2" : "w-5"}`}></span>
-              </div>
-            </button>
-          </div>
+        {/* 3. Mobile Toggle Button */}
+        <div className="md:hidden flex items-center">
+          <button 
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-stone-800 focus:outline-none p-2 relative z-[110]"
+            aria-label="Toggle Menu"
+          >
+            <div className="w-6 flex flex-col items-end gap-1.5">
+              <span className={`h-0.5 bg-stone-800 transition-all duration-300 ${isOpen ? "w-6 rotate-45 translate-y-2" : "w-6"}`}></span>
+              <span className={`h-0.5 bg-stone-800 transition-all duration-300 ${isOpen ? "opacity-0" : "w-4"}`}></span>
+              <span className={`h-0.5 bg-stone-800 transition-all duration-300 ${isOpen ? "w-6 -rotate-45 -translate-y-2" : "w-5"}`}></span>
+            </div>
+          </button>
         </div>
       </div>
 
-      {/* 5. Fullscreen Mobile Menu Overlay - Warm Bakery Theme */}
-    {/* 5. Compact Mobile Menu Drop-down */}
-<div 
-  className={`fixed left-0 right-0 top-0 w-full bg-[#FCFAFB] z-[90] shadow-xl transition-all duration-500 ease-in-out md:hidden border-b border-stone-100 ${
-    isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
-  }`}
-  style={{ height: 'auto' }} 
->
-  {/* Padding-top is large (8rem) to stay below your logo/header toggle */}
-  <nav className="flex flex-col items-center gap-4 py-8 pt-24 pb-10">
-    
-    <Link href="/" onClick={closeMenu} className="text-[9px] tracking-[0.4em] uppercase font-bold text-stone-400">
-      Home
-    </Link>
-
-    <Link href="/menu" onClick={closeMenu} className="text-[10px] tracking-[0.3em] uppercase font-bold text-stone-900">
-      The Menu
-    </Link>
-
-    <Link href="/weddings" onClick={closeMenu} className="text-[10px] tracking-[0.3em] uppercase font-bold text-stone-900">
-      Weddings
-    </Link>
-
-    <Link href="/about" onClick={closeMenu} className="text-[10px] tracking-[0.3em] uppercase font-bold text-stone-900">
-      Our Story
-    </Link>
-
-    <Link 
-      href="https://wa.me/923335539381"
-      target="_blank"
-      onClick={closeMenu}
-      className="mt-2 px-6 py-2 bg-stone-900 text-white text-[9px] tracking-[0.3em] uppercase font-bold"
-    >
-      Order Now
-    </Link>
-
-    {/* Small Location Tag to keep it boutique */}
-    <span className="mt-4 text-[8px] tracking-[0.2em] text-stone-300 uppercase">
-      Rawalpindi
-    </span>
-  </nav>
-</div>
+      {/* 4. Mobile Menu Drop-down */}
+      <div 
+        className={`fixed left-0 right-0 top-0 w-full bg-white z-[90] shadow-2xl transition-all duration-500 ease-in-out md:hidden border-b border-stone-100 ${
+          isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+        }`}
+      >
+        <nav className="flex flex-col items-center gap-6 py-12 pt-28 pb-12">
+          <Link href="/" onClick={closeMenu} className="text-lg font-bold text-stone-800">
+            Home
+          </Link>
+          <Link href="/menu" onClick={closeMenu} className="text-lg font-bold text-stone-800">
+            Our Cakes
+          </Link>
+          <Link href="/weddings" onClick={closeMenu} className="text-lg font-bold text-stone-800">
+            Weddings
+          </Link>
+          <Link href="/about" onClick={closeMenu} className="text-lg font-bold text-stone-800">
+            Our Story
+          </Link>
+          <Link 
+            href="https://wa.me/923335539381"
+            target="_blank"
+            onClick={closeMenu}
+            className="mt-2 px-10 py-3 bg-[#F3722C] text-white text-sm font-bold rounded-full shadow-lg"
+          >
+            WhatsApp Order
+          </Link>
+          
+          <span className="mt-4 text-[10px] tracking-[0.3em] text-stone-400 uppercase">
+            Rawalpindi • Islamabad
+          </span>
+        </nav>
+      </div>
     </nav>
   );
 }
