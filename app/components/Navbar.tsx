@@ -35,7 +35,7 @@ export default function Navbar() {
             onClick={closeMenu}
             className="text-2xl font-bold tracking-tighter text-stone-800 transition-opacity hover:opacity-80"
           >
-            Kalsoom<span className="text-[#F3722C]">.</span>
+            Cakes by Kalsoom<span className="text-[#F3722C]">.</span>
           </Link>
         </div>
 
